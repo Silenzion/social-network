@@ -117,5 +117,16 @@ module.exports = {
       300: "300px",
       475: "475px",
     },
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "1rem",
+        sm: "1rem",
+        md: "1rem",
+        lg: "2rem",
+        xl: "2rem",
+        "2xl": "2rem",
+      },
+    },
   },
 };
