@@ -4,7 +4,7 @@ import { defineAsyncComponent, markRaw, ref, watch } from "vue";
 import LayoutModel from "@/_core/models/LayoutModel";
 
 const route = useRoute();
-const defaultLayoutName = LayoutModel.EMPTY;
+const defaultLayoutName = LayoutModel.PAGE;
 const defaultLayout = defineAsyncComponent({
   loader: () => import(`./assets/layouts/${defaultLayoutName}.vue`),
 });
