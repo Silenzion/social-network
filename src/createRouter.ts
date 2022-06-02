@@ -26,7 +26,7 @@ const createProjectRouter = () => {
         meta: {
           layout: LayoutModel.EMPTY,
         },
-        component: () => import("@/assets/components/NotFound.vue"),
+        component: () => import("@/components/NotFound.vue"),
       },
       {
         path: "/:catchAll(.*)",
