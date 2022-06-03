@@ -7,7 +7,6 @@ describe("MainPage.vue", () => {
   it("should render", () => {
     const wrapper = mount(MainPage);
     expect(wrapper.html()).toMatchSnapshot();
-    expect(wrapper.text()).toContain("Main page");
-    // expect(wrapper.findAll("img")).toHaveLength(1);
+    // expect(wrapper.text()).toContain("Main page");
   });
 });
