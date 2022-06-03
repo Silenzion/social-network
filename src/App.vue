@@ -6,7 +6,7 @@ import LayoutModel from "@/_core/models/LayoutModel";
 const route = useRoute();
 const defaultLayoutName = LayoutModel.PAGE;
 const defaultLayout = defineAsyncComponent({
-  loader: () => import(`./assets/layouts/${defaultLayoutName}.vue`),
+  loader: () => import(`./layouts/${defaultLayoutName}.vue`),
 });
 const layout = ref();
 
@@ -14,7 +14,7 @@ watch(
   () => route.meta?.layout,
   async () => {
     try {
-      const component = await import(`./assets/layouts/${route.meta?.layout || defaultLayoutName}.vue`);
+      const component = await import(`./layouts/${route.meta?.layout || defaultLayoutName}.vue`);
       layout.value = markRaw(component);
     } catch {
       layout.value = markRaw(defaultLayout);

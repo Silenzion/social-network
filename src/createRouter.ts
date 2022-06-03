@@ -18,7 +18,13 @@ const createProjectRouter = () => {
       {
         name: "main",
         path: "/",
-        component: () => import("@/assets/MainPage.vue"),
+        component: () => import("@/modules/Main/pages/MainPage.vue"),
+      },
+      {
+        name: "user-page",
+        path: "/user/:id",
+        props: true,
+        component: () => import("@/modules/User/pages/UserPage.vue"),
       },
       {
         name: "404",
