@@ -24,6 +24,7 @@ module.exports = {
           500: "#808080",
           900: "#010001",
         },
+        primary: "#409eff",
       },
 
       borderRadius: {

@@ -1,5 +1,5 @@
 <template>
-  <header>
-    <div class="container">Header</div>
+  <header class="bg-primary">
+    <div class="container p-[20px]  text-white">Header</div>
   </header>
 </template>
