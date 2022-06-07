@@ -11,7 +11,6 @@ const searchQuery = ref("");
         <el-icon :size="30" class="mr-[20px]"><ElementPlus /></el-icon>
         <el-input v-model="searchQuery" class="m-2 !w-[280px]" placeholder="Type something" :prefix-icon="Search" />
       </div>
-
       <el-button type="primary" plain>Log in</el-button>
     </div>
   </header>

@@ -1,5 +1,5 @@
-import LayoutModel from "@/_core/models/LayoutModel";
 import { createRouter, createWebHistory } from "vue-router";
+import EmptyLayout from "@/layouts/EmptyLayout.vue";
 // TODO: add authService and simple auth with LocalStorage
 
 const createProjectRouter = () => {
@@ -30,7 +30,7 @@ const createProjectRouter = () => {
         name: "404",
         path: "/404",
         meta: {
-          layout: LayoutModel.EMPTY,
+          layout: EmptyLayout,
         },
         component: () => import("@/components/NotFound.vue"),
       },

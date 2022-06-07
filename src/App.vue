@@ -1,28 +1,15 @@
 <script lang="ts" setup>
 import { useRoute } from "vue-router";
-import { defineAsyncComponent, markRaw, ref, watch } from "vue";
-import LayoutModel from "@/_core/models/LayoutModel";
+import { computed, defineAsyncComponent, markRaw, ref, watch } from "vue";
+import PageLayout from "./layouts/PageLayout.vue";
+// import EmptyLayout from "./layouts/EmptyLayout.vue";
 
 const route = useRoute();
-const defaultLayoutName = LayoutModel.PAGE;
-const defaultLayout = defineAsyncComponent({
-  loader: () => import(`./layouts/${defaultLayoutName}.vue`),
-});
-const layout = ref();
 
-watch(
-  () => route.meta?.layout,
-  async () => {
-    try {
-      const component = await import(`./layouts/${route.meta?.layout || defaultLayoutName}.vue`);
-      layout.value = markRaw(component);
-    } catch {
-      layout.value = markRaw(defaultLayout);
-    }
-  },
-  { immediate: true }
-);
+const layout = computed(() => {
+  return route.meta?.layout || PageLayout;
+});
 </script>
 <template>
-  <component :is="layout"></component>
+  <component :is="layout"> </component>
 </template>
