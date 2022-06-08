@@ -1,8 +1,8 @@
 <template>
-  <el-card class="p-[20px]">
-    <div class="flex flex-col md:flex-row">
-    <div class="grow bg-blue-800 p-[20px]">
-      <css-doodle class="grow h-[400px] w-[500px] text-clip " grid="1x18">
+  <el-card class="overflow-y-visible p-[20px]">
+    <div class="flex flex-col lg:flex-row">
+    <div class="grow bg-blue-600 py-[30px]">
+      <css-doodle class="grow h-[400px] mx-auto w-[80%] max-w-[] " grid="1x18">
           :doodle {
            max-height: 60vw;
           }
@@ -42,13 +42,13 @@
           }
       </css-doodle>
     </div>
-      <div class="px-[32px]">
+      <div class="w-full max-w-[55%] px-[32px]">
         <h1 class="text-xl font-medium">Hello!</h1>
         <div class="py-[32px] text-lg">
           Dear friend, welcome to our social network! Here you can find a lot of interesting content and new friends! Rather join
           us!
         </div>
-        <div class="flex flex-row items-center justify-end">
+        <div class="flex flex-row items-center">
           <el-button type="primary" class="mr-[10px]">Log in</el-button>
           <span class="mr-[10px]">OR</span>
           <el-button type="primary" plain>Sign in</el-button>
