@@ -6,6 +6,8 @@ import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 import createRouter from "@/createRouter";
 import vfmPlugin from "vue-final-modal";
+import "css-doodle";
+
 const app = createApp(App);
 
 app.use(ElementPlus);

@@ -67,9 +67,9 @@ module.exports = {
           },
         ],
         xl: [
-          "64px",
+          "49px",
           {
-            lineHeight: "75px",
+            lineHeight: "57px",
           },
         ],
       },
