@@ -1,50 +1,23 @@
+<script lang="ts" setup>
+import { onBeforeUnmount, ref } from "vue";
+const doodle = ref();
+const intId = setInterval(() => {
+  doodle.value.update();
+}, 7000);
+onBeforeUnmount(() => {
+  clearInterval(intId);
+});
+</script>
 <template>
   <el-card class="overflow-y-visible p-[20px]">
-    <div class="flex flex-col lg:flex-row">
-    <div class="grow py-[30px]">
-      <css-doodle class="grow h-[400px] mx-auto w-[80%] max-w-[] " grid="1x18" click-to-update>
-          :doodle {
-           max-height: 60vw;
-          }
-
-          @place-cell: center;
-          @size: calc(@i()*6%);
-          border-radius: 50%;
-          border-style: dashed;
-          border-width: calc(@i() * 2px);
-          border-color: hsla(
-          @rand(210, 240), 100%, 10%,
-          calc(3 / @i() * .8)
-          );
-          @keyframes changeRotate {
-          from {
-          transform: rotate(@r(360deg));
-          }
-          to {
-          transform: rotate(@r(0deg));
-          }
-          }
-          animation-duration: calc(2s * @i());
-          animation-name: changeRotate;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-          animation-delay: calc(0.08s * @i());
-          @at(1, 13) {
-        transition: @r(.3s) ease;
-          border-style: dotted;
-          border-color: hsla(
-          190, 70%, 50%, 90%
-          );
-          }
-          @at(1, 17) {
-        transition: @r(.3s) ease;
-          border-style: dotted;
-          border-color: hsla(
-          190, 70%, 50%, 90%
-          );
-          }
-      </css-doodle>
-    </div>
+    <div class="flex flex-col items-center lg:flex-row">
+      <div class="grow py-[30px]">
+        <css-doodle ref="doodle" class="mx-auto h-[400px] w-[80%] max-w-[] grow cursor-pointer" click-to-update>
+          @grid: 1x10 / 85%; @position: center; @size: calc(@i * 10%); border-radius: 50%; border-style: dashed; border-width:
+          calc(@i * 4px); border-color: hsla( calc(20 * @i), 70%, 68%, calc(5 / @i * .8) ); transform: rotate(@r(360deg));
+          transition: all .8s ease;
+        </css-doodle>
+      </div>
       <div class="w-full px-[32px] lg:max-w-[55%]">
         <h1 class="text-xl font-medium">Hello!</h1>
         <div class="py-[32px] text-lg">
@@ -52,9 +25,9 @@
           us!
         </div>
         <div class="flex flex-row items-center">
-          <el-button type="primary" class="mr-[10px]">Log in</el-button>
+          <el-button type="primary" size="large" class="mr-[10px]">Log in</el-button>
           <span class="mr-[10px]">OR</span>
-          <el-button type="primary" plain>Sign in</el-button>
+          <el-button size="large" type="primary" plain>Sign in</el-button>
         </div>
       </div>
     </div>
