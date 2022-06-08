@@ -7,7 +7,7 @@ import BaseFooter from "@/components/BaseFooter.vue";
     <BaseHeader />
     <div class="container">
       <main>
-        <router-view></router-view>
+        <slot></slot>
       </main>
     </div>
     <BaseFooter />

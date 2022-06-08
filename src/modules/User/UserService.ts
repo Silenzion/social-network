@@ -13,6 +13,10 @@ class UserService extends BaseService {
       name: "John",
       surname: "Doe",
       age: 20,
+      city: {
+        id: 1,
+        name: "City on the edge of the world",
+      },
     });
   }
 }

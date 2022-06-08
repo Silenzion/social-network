@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { useRoute } from "vue-router";
-import { computed, defineAsyncComponent, markRaw, ref, watch } from "vue";
+import { computed } from "vue";
 import PageLayout from "./layouts/PageLayout.vue";
-// import EmptyLayout from "./layouts/EmptyLayout.vue";
+//@ts-ignore
+import { ModalsContainer } from "vue-final-modal";
 
 const route = useRoute();
 
@@ -11,5 +12,8 @@ const layout = computed(() => {
 });
 </script>
 <template>
-  <component :is="layout"> </component>
+  <component :is="layout">
+    <router-view></router-view>
+  </component>
+  <modals-container></modals-container>
 </template>
