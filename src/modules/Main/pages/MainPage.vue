@@ -1,24 +1,47 @@
 <template>
   <el-card class="p-[20px]">
-    <div class="flex flex-row">
-      <!--      <div class="relative w-[40%] text-clip bg-blue-500">-->
-      <css-doodle class="relative w-[280px] overflow-clip bg-blue-500">
-        :doodle {
-        @grid: 1x3 ;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 0; }
-        @size: 100% 150%;
-        position: absolute;
-        background: @m(100, ( linear-gradient(transparent, @p( #FFFDE1@repeat(2, @p([0-9a-f])), #FB3569@repeat(2, @p([0-9a-f])) ))
-        @r(0%, 100%) @r(0%, 100%) / @r(1px) @r(23vmin) no-repeat ));
-        will-change: transform; animation: f 20s linear calc(-20s /
-        @size() * @i()) infinite;
-        @keyframes f { from { transform: translateY(-100%) } to { transform: translateY(100%) } }
+    <div class="flex flex-col md:flex-row">
+    <div class="grow bg-blue-800 p-[20px]">
+      <css-doodle class="grow h-[400px] w-[500px] text-clip " grid="1x18">
+          :doodle {
+           max-height: 60vw;
+          }
+          @place-cell: center;
+          @size: calc(@i()*6%);
+          border-radius: 50%;
+          border-style: dashed;
+          border-width: calc(@i() * 2px);
+          border-color: hsla(
+          @rand(150, 180), 100%, 50%,
+          calc(3 / @i() * .8)
+          );
+          @keyframes changeRotate {
+          from {
+          transform: rotate(@r(360deg));
+          }
+          to {
+          transform: rotate(@r(0deg));
+          }
+          }
+          animation-duration: calc(2s * @i());
+          animation-name: changeRotate;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+          animation-delay: calc(0.08s * @i());
+          @at(1, 13) {
+          border-style: dotted;
+          border-color: hsla(
+          190, 70%, 50%, 90%
+          );
+          }
+          @at(1, 17) {
+          border-style: dotted;
+          border-color: hsla(
+          190, 70%, 50%, 90%
+          );
+          }
       </css-doodle>
-      <!--      </div>-->
-
+    </div>
       <div class="px-[32px]">
         <h1 class="text-xl font-medium">Hello!</h1>
         <div class="py-[32px] text-lg">
