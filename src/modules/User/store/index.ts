@@ -24,17 +24,20 @@ const createMockData = (): UserModel[] => {
 
 export const useUserStore = defineStore({
   id: "userStore",
+
   state: () =>
     ({
-      user: <UserModel | null>null, //auth user
-      userList: <UserModel[]>[],
+      user: <UserModel | null>localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user") || "") : null, //auth user
+      userList: <UserModel[]>createMockData(),
     } as UserState),
+
   getters: {
     getUser: (state) => state.user,
     getUserList: (state) => state.userList,
   },
+
   actions: {
-    setAuthUser(data: UserModel) {
+    login(data: UserModel) {
       const user = this.userList.find((elem) => {
         return elem.id == data.id && elem.email == data.email;
       });
@@ -42,20 +45,29 @@ export const useUserStore = defineStore({
       this.updateDataInLocalStorage(user);
       this.user = user;
     },
+
+    logout() {
+      this.user = null;
+      localStorage.removeItem("user");
+    },
+
     updateUser(id: number | string, data: Partial<UserModel>) {
       if (!id || !!data) return;
       const userIndex = this.findIndexById(id);
       if (userIndex == -1) return;
       Object.assign(this.userList[userIndex], data);
     },
+
     deleteUser(id: number | string) {
       const userIndex = this.findIndexById(id);
       if (userIndex == -1) return;
       this.userList.splice(userIndex, 1);
     },
+
     findIndexById(id: number | string) {
       return this.userList.findIndex((item) => item.id == id);
     },
+
     updateDataInLocalStorage(data: Partial<UserModel>) {
       if (!data) return;
       // @ts-ignore

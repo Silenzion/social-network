@@ -8,7 +8,7 @@ import { ModalsContainer } from "vue-final-modal";
 const route = useRoute();
 
 const layout = computed(() => {
-  return route?.meta?.layout || PageLayout;
+  return route?.name ? route.meta?.layout || PageLayout : false;
 });
 </script>
 <template>
