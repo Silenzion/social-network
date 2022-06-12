@@ -2,7 +2,7 @@
 import { Message, Delete, Edit, Share, Bell } from "@element-plus/icons-vue";
 import { inject, ref } from "vue";
 import ServiceManager from "@/_core/ServiceManager";
-import UserService from "@/modules/User/UserService";
+import AuthService from "@/modules/User/AuthService";
 import UserModel from "@/modules/User/models/UserModel";
 import BaseConfirmDialog from "@/components/dialog/BaseConfirmDialog.vue";
 import { VueFinalModalProperty } from "vue-final-modal";
@@ -17,7 +17,7 @@ const loading = ref(false);
 const user = ref(new UserModel());
 
 const getUser = () => {
-  user.value = ServiceManager.getInstance().getService(UserService).getUser();
+  user.value = ServiceManager.getInstance().getService(AuthService).getCurrentUser();
 };
 
 const openDialog = async () => {

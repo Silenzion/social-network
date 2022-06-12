@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@vue/test-utils": "^2.0.0",
+    "@vuelidate/core": "^2.0.0-alpha.41",
+    "@vuelidate/validators": "^2.0.0-alpha.29",
     "axios": "^0.26.1",
     "class-transformer": "^0.5.1",
     "css-doodle": "^0.27.4",
