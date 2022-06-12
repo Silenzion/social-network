@@ -1,21 +1,25 @@
 <script lang="ts" setup>
 import { onBeforeUnmount, ref } from "vue";
 const doodle = ref();
-const intId = setInterval(() => {
-  doodle.value.update();
-}, 7000);
-onBeforeUnmount(() => {
-  clearInterval(intId);
-});
+
+// const intId = setInterval(() => {
+//   doodle.value.update();
+// }, 7000);
+//
+// doodle.value.style.transition = "all .8s ease";
+
+// onBeforeUnmount(() => {
+//   clearInterval(intId);
+// });
 </script>
 <template>
-  <el-card class="overflow-y-visible p-[20px]">
-    <div class="flex flex-col items-center lg:flex-row">
+
+    <div class="flex flex-col items-center lg:flex-row p-[20px]">
       <div class="grow py-[30px]">
         <css-doodle ref="doodle" class="mx-auto h-[400px] w-[80%] max-w-[] grow cursor-pointer" click-to-update>
           @grid: 1x10 / 85%; @position: center; @size: calc(@i * 10%); border-radius: 50%; border-style: dashed; border-width:
           calc(@i * 4px); border-color: hsla( calc(20 * @i), 70%, 68%, calc(5 / @i * .8) ); transform: rotate(@r(360deg));
-          transition: all .8s ease;
+          <!--          transition: all .8s ease;-->
         </css-doodle>
       </div>
       <div class="w-full px-[32px] lg:max-w-[55%]">
@@ -31,5 +35,4 @@ onBeforeUnmount(() => {
         </div>
       </div>
     </div>
-  </el-card>
 </template>

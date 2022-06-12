@@ -12,6 +12,7 @@ class UserService extends BaseService {
       id: 1,
       name: "John",
       surname: "Doe",
+      email: "wxample@mail.com",
       age: 20,
       city: {
         id: 1,
