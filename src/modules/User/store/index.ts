@@ -10,7 +10,7 @@ export type UserState = {
 };
 
 const createMockData = (): UserModel[] => {
-  return new Array(2).map((elem, index) => {
+  return [...new Array(2)].map((elem, index) => {
     return new UserModel({
       id: index,
       name: index == 0 ? "John" : "Joanna",
@@ -42,8 +42,9 @@ export const useUserStore = defineStore({
 
   actions: {
     login(data: LoginData): boolean {
+      if (!this.userList.length) return false;
       const user = this.userList.find((elem) => {
-        return elem.password == data.password && elem.email == data.email;
+        return elem.password === data.password && elem.email === data.email;
       });
       if (!user) return false;
       this.updateDataInLocalStorage(user);

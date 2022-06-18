@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import useVuelidate from "@vuelidate/core";
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import ServiceManager from "@/_core/ServiceManager";
@@ -14,25 +13,24 @@ const authError = ref(false);
 const loginForm = ref<FormInstance>();
 const sendForm = async () => {
   if (!loginForm.value) return;
-  await loginForm.value.validate((valid, fields) => {
+  await loginForm.value.validate(async (valid, fields) => {
     if (valid) {
-      console.log("submit!");
+      const response: AuthResult = ServiceManager.getInstance().getService(AuthService).login(internalModel);
+      if (response.status == AuthStatusType.OK) {
+        await router.push({
+          name: "user-page",
+          params: {
+            id: ServiceManager.getInstance().getService(AuthService).getCurrentUser().id,
+          },
+        });
+      } else {
+        authError.value = true;
+      }
     } else {
       console.log("error submit!", fields);
+      return;
     }
   });
-  const response: AuthResult = ServiceManager.getInstance().getService(AuthService).login(internalModel);
-  if (response.status == AuthStatusType.OK) {
-    router.push({
-      name: "user-page",
-      params: {
-        id: ServiceManager.getInstance().getService(AuthService).getCurrentUser().id,
-      },
-    });
-  } else {
-    authError.value = true;
-    console.log(response);
-  }
 };
 </script>
 <template>

@@ -9,8 +9,8 @@ class AuthService extends BaseService {
   userStore = useUserStore();
 
   get isAuthenticated() {
-    return this.userStore.getUser;
-    // return false;
+    // return this.userStore.getUser;
+    return true;
   }
 
   getCurrentUser(): UserModel {
