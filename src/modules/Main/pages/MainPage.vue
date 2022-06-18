@@ -22,7 +22,7 @@ const openLoginForm = () => {
 // });
 </script>
 <template>
-  <div class="flex flex-col items-center p-[20px] lg:flex-row">
+  <section class="flex min-h-screen flex-col items-center p-[20px] lg:flex-row">
     <div class="grow py-[30px]">
       <css-doodle ref="doodle" class="mx-auto h-[400px] w-[80%] max-w-[] grow cursor-pointer" click-to-update>
         @grid: 1x10 / 85%; @position: center; @size: calc(@i * 10%); border-radius: 50%; border-style: dashed; border-width:
@@ -42,5 +42,5 @@ const openLoginForm = () => {
         <el-button size="large" type="primary" plain>Sign in</el-button>
       </div>
     </div>
-  </div>
+  </section>
 </template>

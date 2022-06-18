@@ -29,6 +29,7 @@ const createProjectRouter = () => {
         path: "/",
         meta: {
           requiresAuth: false,
+          layout: EmptyLayout,
         },
         component: () => import("@/modules/Main/pages/MainPage.vue"),
       },
