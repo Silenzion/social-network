@@ -1,4 +1,7 @@
+import LoginData from "@/modules/User/models/LoginData";
+import userModel from "@/modules/User/models/UserModel";
 import UserModel from "@/modules/User/models/UserModel";
+import { User } from "@element-plus/icons-vue";
 import { defineStore } from "pinia";
 
 export type UserState = {
@@ -12,7 +15,8 @@ const createMockData = (): UserModel[] => {
       id: index,
       name: index == 0 ? "John" : "Joanna",
       surname: "Doe",
-      email: "wxample@mail.com",
+      email: "example@mail.com",
+      password: "123456",
       age: 20 + index,
       city: {
         id: 1,
@@ -32,39 +36,40 @@ export const useUserStore = defineStore({
     } as UserState),
 
   getters: {
-    getUser: (state) => state.user,
-    getUserList: (state) => state.userList,
+    getUser: (state): userModel | null => state.user,
+    getUserList: (state): UserModel[] => state.userList,
   },
 
   actions: {
-    login(data: UserModel) {
+    login(data: LoginData): boolean {
       const user = this.userList.find((elem) => {
-        return elem.id == data.id && elem.email == data.email;
+        return elem.password == data.password && elem.email == data.email;
       });
-      if (!user) return;
+      if (!user) return false;
       this.updateDataInLocalStorage(user);
       this.user = user;
+      return true;
     },
 
-    logout() {
+    logout(): void {
       this.user = null;
       localStorage.removeItem("user");
     },
 
-    updateUser(id: number | string, data: Partial<UserModel>) {
+    updateUser(id: number | string, data: Partial<UserModel>): void {
       if (!id || !!data) return;
       const userIndex = this.findIndexById(id);
       if (userIndex == -1) return;
       Object.assign(this.userList[userIndex], data);
     },
 
-    deleteUser(id: number | string) {
+    deleteUser(id: number | string): void {
       const userIndex = this.findIndexById(id);
       if (userIndex == -1) return;
       this.userList.splice(userIndex, 1);
     },
 
-    findIndexById(id: number | string) {
+    findIndexById(id: number | string): number {
       return this.userList.findIndex((item) => item.id == id);
     },
 

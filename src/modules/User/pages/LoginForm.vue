@@ -13,7 +13,6 @@ const internalModel = reactive(new LoginData());
 const authError = ref(false);
 const loginForm = ref<FormInstance>();
 const sendForm = async () => {
-  // const response: AuthResult = ServiceManager.getInstance().getService(AuthService).login(internalModel);
   if (!loginForm.value) return;
   await loginForm.value.validate((valid, fields) => {
     if (valid) {
@@ -22,17 +21,18 @@ const sendForm = async () => {
       console.log("error submit!", fields);
     }
   });
-  // if (response.status == AuthStatusType.OK) {
-  //   router.push({
-  //     name: "user-page",
-  //     params: {
-  //       id: ServiceManager.getInstance().getService(AuthService).getCurrentUser().id,
-  //     },
-  //   });
-  // } else {
-  //   authError.value = true;
-  //   console.log(response);
-  // }
+  const response: AuthResult = ServiceManager.getInstance().getService(AuthService).login(internalModel);
+  if (response.status == AuthStatusType.OK) {
+    router.push({
+      name: "user-page",
+      params: {
+        id: ServiceManager.getInstance().getService(AuthService).getCurrentUser().id,
+      },
+    });
+  } else {
+    authError.value = true;
+    console.log(response);
+  }
 };
 </script>
 <template>
@@ -41,10 +41,10 @@ const sendForm = async () => {
       <div class="mb-[32px] text-center text-xl">Log in</div>
       <el-form ref="loginForm" :rules="validationsRule" :model="internalModel" status-icon>
         <el-form-item label="Email" prop="email">
-          <el-input v-model="internalModel.email"></el-input>
+          <el-input v-model="internalModel.email" autocomplete="off" />
         </el-form-item>
         <el-form-item label="Password" prop="password">
-          <el-input v-model="internalModel.password" type="password" />
+          <el-input v-model="internalModel.password" type="password" autocomplete="off" />
         </el-form-item>
         <div v-if="authError" class="text-red-700">Sorry, user with the credentials not found!</div>
         <el-button type="primary" @click="sendForm()">Log in</el-button>
