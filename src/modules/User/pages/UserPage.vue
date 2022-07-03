@@ -56,11 +56,14 @@ getUser();
           <div>{{ user.name }} {{ user.surname }}</div>
         </div>
         <div class="grid grid-cols-2">
-          <div>Username:</div>
           <div>Age:</div>
           <div>{{ user.age }}</div>
           <div>City:</div>
           <div>{{ user.city.name }}</div>
+          <div>Email:</div>
+          <div>{{ user.email }}</div>
+          <div>About:</div>
+          <div>{{ user.about }}</div>
         </div>
       </div>
     </div>
