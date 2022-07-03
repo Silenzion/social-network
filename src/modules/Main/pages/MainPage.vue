@@ -25,9 +25,22 @@ const openLoginForm = () => {
   <section class="flex min-h-screen flex-col items-center p-[20px] lg:flex-row">
     <div class="grow py-[30px]">
       <css-doodle ref="doodle" class="mx-auto h-[400px] w-[80%] max-w-[] grow cursor-pointer" click-to-update>
-        @grid: 1x10 / 85%; @position: center; @size: calc(@i * 10%); border-radius: 50%; border-style: dashed; border-width:
-        calc(@i * 4px); border-color: hsla( calc(20 * @i), 70%, 68%, calc(5 / @i * .8) ); transform: rotate(@r(360deg));
-        <!--          transition: all .8s ease;-->
+        @grid: 14 / 80%;
+        @random {
+        border-left: 1px solid #5d81bc;
+        }
+        @random {
+        border-top: 1px solid #5d81bc;
+        }
+        @random(.25) {
+        background: linear-gradient( @p(#fff, tan, #5d81bc), @lp
+        )
+        50% / @r(60%) @lr
+        no-repeat;
+        }
+        @random {
+        filter: drop-shadow(0 0 10px #fff);
+        }
       </css-doodle>
     </div>
     <div class="w-full px-[32px] lg:max-w-[55%]">
